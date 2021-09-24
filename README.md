@@ -1,0 +1,2 @@
+# CshaprStrukturyGeneryczne
+Projekty z kursu
