@@ -52,6 +52,7 @@
     <Compile Include="KolejkaTest.cs" />
     <Compile Include="ListaTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StosTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
