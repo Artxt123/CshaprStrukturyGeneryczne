@@ -49,6 +49,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HashSetTest.cs" />
     <Compile Include="KolejkaTest.cs" />
     <Compile Include="ListaTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
