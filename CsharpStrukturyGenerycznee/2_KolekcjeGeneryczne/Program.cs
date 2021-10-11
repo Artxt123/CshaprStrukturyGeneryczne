@@ -10,11 +10,52 @@ namespace _2_KolekcjeGeneryczne
     {
         static void Main(string[] args)
         {
+            //TablicaPracowników();
             //Kolejka();
             //Stos();
             //HashSet();
             //LinkedList();
+            //LinkedList2();
 
+            var pracownicy = new Dictionary<string, Pracownik>();
+            pracownicy.Add("Andrzejak", new Pracownik { Imie = "Michał", Nazwisko = "Andrzejak" }); //klucz nie może się powtarzać
+            pracownicy.Add("Miła", new Pracownik { Imie = "Katarzyna", Nazwisko = "Miła" });
+            pracownicy.Add("Kowalski", new Pracownik { Imie = "Marcin", Nazwisko = "Kowalski" });
+            pracownicy.Add("Sęk", new Pracownik { Imie = "Tomasz", Nazwisko = "Sęk" });
+
+            var kowalski = pracownicy["Kowalski"]; //można odwoływać się do danego elementu poprzez podanie klucza
+
+            foreach (var pracownik in pracownicy)
+            {
+                Console.WriteLine($"{pracownik.Key}: {pracownik.Value.Imie} {pracownik.Value.Nazwisko}");
+            }
+        }
+
+        private static void TablicaPracowników()
+        {
+            Pracownik[] pracownicy = new Pracownik[]
+            {
+                new Pracownik {Imie = "Michał", Nazwisko= "Kowalski"},
+                new Pracownik {Imie = "Jacek", Nazwisko= "Nowak"},
+                new Pracownik {Imie = "Alicja", Nazwisko= "Piła"}
+            };
+
+            foreach (var pracownik in pracownicy)
+            {
+                Console.WriteLine($"{pracownik.Imie} {pracownik.Nazwisko}");
+            }
+
+            for (int i = 0; i < pracownicy.Length; i++)
+            {
+                Console.WriteLine($"{pracownicy[i].Imie} {pracownicy[i].Nazwisko}");
+            }
+
+            Array.Resize(ref pracownicy, 10);
+            pracownicy[9] = new Pracownik { Imie = "Janusz", Nazwisko = "Kopeć" };
+        }
+
+        private static void LinkedList2()
+        {
             LinkedList<int> lista2 = new LinkedList<int>();
             lista2.AddFirst(11);
             lista2.AddFirst(22);
@@ -32,31 +73,6 @@ namespace _2_KolekcjeGeneryczne
                 Console.WriteLine(wezel.Value);
                 wezel = wezel.Next;
             }
-
-
-            #region Tablica pracowników
-
-            //Tablica pracowników
-            //Pracownik[] pracownicy = new Pracownik[]
-            //{
-            //    new Pracownik {Imie = "Michał", Nazwisko= "Kowalski"},
-            //    new Pracownik {Imie = "Jacek", Nazwisko= "Nowak"},
-            //    new Pracownik {Imie = "Alicja", Nazwisko= "Piła"}
-            //};
-
-            //foreach (var pracownik in pracownicy)
-            //{
-            //    Console.WriteLine($"{pracownik.Imie} {pracownik.Nazwisko}");
-            //}
-
-            //for (int i = 0; i < pracownicy.Length; i++)
-            //{
-            //    Console.WriteLine($"{pracownicy[i].Imie} {pracownicy[i].Nazwisko}");
-            //}
-
-            //Array.Resize(ref pracownicy, 10);
-            //pracownicy[9] = new Pracownik { Imie = "Janusz", Nazwisko = "Kopeć" };
-            #endregion
         }
 
         private static void LinkedList()
