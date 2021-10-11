@@ -12,10 +12,29 @@ namespace _2_KolekcjeGeneryczne
         {
             //Kolejka();
             //Stos();
+            //HashSet();
+            //LinkedList();
 
-            HashSet();
+            LinkedList<int> lista2 = new LinkedList<int>();
+            lista2.AddFirst(11);
+            lista2.AddFirst(22);
+            lista2.AddFirst(33);
+
+            var elementPierwszy = lista2.First;
+            var elementOstatni = lista2.Last;
+
+            lista2.AddAfter(elementPierwszy, 333);
+            lista2.AddBefore(elementOstatni, 1);
+
+            var wezel = lista2.First;
+            while (wezel != null)
+            {
+                Console.WriteLine(wezel.Value);
+                wezel = wezel.Next;
+            }
 
 
+            #region Tablica pracowników
 
             //Tablica pracowników
             //Pracownik[] pracownicy = new Pracownik[]
@@ -37,7 +56,22 @@ namespace _2_KolekcjeGeneryczne
 
             //Array.Resize(ref pracownicy, 10);
             //pracownicy[9] = new Pracownik { Imie = "Janusz", Nazwisko = "Kopeć" };
+            #endregion
+        }
 
+        private static void LinkedList()
+        {
+            LinkedList<int> lista = new LinkedList<int>();
+            lista.AddFirst(11);
+            lista.AddFirst(22);
+            lista.AddFirst(33);
+            lista.AddLast(100);
+            lista.AddLast(200);
+
+            foreach (var item in lista)
+            {
+                Console.WriteLine(item);
+            }
         }
 
         private static void HashSet()
