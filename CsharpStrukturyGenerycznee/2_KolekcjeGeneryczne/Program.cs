@@ -17,17 +17,60 @@ namespace _2_KolekcjeGeneryczne
             //LinkedList();
             //LinkedList2();
 
-            var pracownicy = new Dictionary<string, Pracownik>();
-            pracownicy.Add("Andrzejak", new Pracownik { Imie = "Michał", Nazwisko = "Andrzejak" }); //klucz nie może się powtarzać
-            pracownicy.Add("Miła", new Pracownik { Imie = "Katarzyna", Nazwisko = "Miła" });
-            pracownicy.Add("Kowalski", new Pracownik { Imie = "Marcin", Nazwisko = "Kowalski" });
-            pracownicy.Add("Sęk", new Pracownik { Imie = "Tomasz", Nazwisko = "Sęk" });
+            #region ZaawansowanySłownikKluczemNaziwsko
 
-            var kowalski = pracownicy["Kowalski"]; //można odwoływać się do danego elementu poprzez podanie klucza
+            //robimy słownik, którego kluczem jest nazwisko, a zawartością jest lista pracowników o tym samym nazwisku;
+            //dzięki temu możemy dodać dwóch pracowników o tym samym nazwisku, używając jako klucza ich identycznego nazwiska
+            //var pracownicy = new Dictionary<string, List<Pracownik>>();
+            //pracownicy.Add("Andrzejak", new List<Pracownik>() { new Pracownik { Imie = "Michał", Nazwisko = "Andrzejak" } });
+            //pracownicy.Add("Miła", new List<Pracownik>() { new Pracownik { Imie = "Katarzyna", Nazwisko = "Miła" } });
 
-            foreach (var pracownik in pracownicy)
+            //pracownicy["Andrzejak"].Add(new Pracownik { Imie = "Natalia", Nazwisko = "Andrzejak" });
+
+            //foreach (var lista in pracownicy)
+            //{
+            //    foreach (var pracownik in lista.Value)
+            //    {
+            //        Console.WriteLine($"{pracownik.Imie} {pracownik.Nazwisko}");
+            //    }
+            //}
+            #endregion
+
+            //słownik, którego kluczem są działy, wartością listy pracowników z danego działu
+            var pracownicy = new Dictionary<string, List<Pracownik>>();
+            pracownicy.Add("Księgowość", new List<Pracownik>()
+            { 
+              new Pracownik { Imie = "Michał", Nazwisko = "Andrzejak" },
+              new Pracownik { Imie = "Izabela", Nazwisko = "Mądrecka" },
+              new Pracownik { Imie = "Marcin", Nazwisko = "Poradzisz" }
+            });
+
+            pracownicy["Księgowość"].Add(new Pracownik { Imie = "Natalia", Nazwisko = "Andrzejak" });
+
+            pracownicy.Add("Informatyka", new List<Pracownik>()
+            { 
+              new Pracownik { Imie = "Marek", Nazwisko = "Rajkiewicz" },
+              new Pracownik { Imie = "Wojciech", Nazwisko = "Wiertlewski" }
+            });
+
+            //wyświetlenie wszystkich pracowników z wszystkich działów
+            foreach (var dzial in pracownicy)
             {
-                Console.WriteLine($"{pracownik.Key}: {pracownik.Value.Imie} {pracownik.Value.Nazwisko}");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Dział : {dzial.Key}:"); //wypisujemy nazwę działu
+                Console.ResetColor();
+                foreach (var pracownik in dzial.Value)
+                {
+                    Console.WriteLine($"{pracownik.Imie} {pracownik.Nazwisko}"); //imię i nazwisko pracownika z danego działu
+                }
+                Console.WriteLine();
+            }
+
+            //wyświetlenie praconików z konkretnego działu
+            Console.WriteLine("Pracownicy z działu Księgowość:");
+            foreach (var pracownik in pracownicy["Księgowość"])
+            {
+                Console.WriteLine($"{pracownik.Imie} {pracownik.Nazwisko}");
             }
         }
 
