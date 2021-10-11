@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="HashSetTest.cs" />
     <Compile Include="KolejkaTest.cs" />
+    <Compile Include="LinkedListTest.cs" />
     <Compile Include="ListaTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StosTest.cs" />
