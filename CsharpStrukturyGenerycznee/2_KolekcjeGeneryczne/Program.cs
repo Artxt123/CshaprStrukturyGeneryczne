@@ -18,8 +18,39 @@ namespace _2_KolekcjeGeneryczne
             //LinkedList2();
             //Dictionary0();
             //Dictionary();
-            SortedDictionary();
+            //SortedDictionary();
             //SortedList();
+            SortedSet();
+        }
+
+        private static void SortedSet()
+        {
+            //SortedSet działa tak jak HashSet (czyli uniemożliwia dodania duplikatu), ale dodatkowo sortuje wprowadzone wartości
+            var set = new SortedSet<int>();
+            set.Add(8);
+            set.Add(7);
+            set.Add(9);
+            set.Add(10);
+            set.Add(1);
+            set.Add(0);
+
+            foreach (var item in set)
+            {
+                Console.WriteLine(item);
+            }
+            //...
+            var set2 = new SortedSet<string>();
+            set2.Add("Kasia");
+            set2.Add("Basia");
+            set2.Add("Jola");
+            set2.Add("Ola");
+            set2.Add("Wiola");
+
+            set2.Add("Tola");
+            foreach (var item in set2)
+            {
+                Console.WriteLine(item);
+            }
         }
 
         private static void SortedList()
