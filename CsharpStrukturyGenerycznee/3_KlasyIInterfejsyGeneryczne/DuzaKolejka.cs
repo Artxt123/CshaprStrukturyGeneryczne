@@ -1,26 +1,34 @@
-﻿namespace _3_KlasyIInterfejsyGeneryczne
+﻿using System.Collections.Generic;
+
+namespace _3_KlasyIInterfejsyGeneryczne
 {
-    internal class DuzaKolejka<T> : IKolejka<T>
+    public class DuzaKolejka<T> : IKolejka<T>
     {
-        private int pojemnosc;
+        Queue<T> kolejka;
 
         public DuzaKolejka()
         {
-           
+            kolejka = new Queue<T>();
         }
 
         public bool JestPelny => throw new System.NotImplementedException();
 
-        public bool JestPusty => throw new System.NotImplementedException();
+        public bool JestPusty
+        {
+            get
+            {
+                return kolejka.Count == 0;
+            }
+        }
 
         public T Czytaj()
         {
-            throw new System.NotImplementedException();
+            return kolejka.Dequeue();
         }
 
         public void Zapisz(T wartosc)
         {
-            throw new System.NotImplementedException();
+            kolejka.Enqueue(wartosc);
         }
     }
 }
