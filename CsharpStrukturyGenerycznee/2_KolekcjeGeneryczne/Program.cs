@@ -18,14 +18,34 @@ namespace _2_KolekcjeGeneryczne
             //LinkedList2();
             //Dictionary0();
             //Dictionary();
-
             SortedDictionary();
+            //SortedList();
+        }
+
+        private static void SortedList()
+        {
+            var listaPosortowana = new SortedList<int, string>();
+            listaPosortowana.Add(4, "cztery");
+            listaPosortowana.Add(2, "dwa");
+            listaPosortowana.Add(5, "pięć");
+            listaPosortowana.Add(1, "jeden");
+
+            foreach (var item in listaPosortowana)
+            {
+                Console.WriteLine(item.Value);
+            }
         }
 
         private static void SortedDictionary()
         {
-            //SortedDictionary sortuje klucze w kolejności alfabetycznej dla stringów, rosnącej dla liczb; wtedy się przydaje
-            var pracownicy = new SortedDictionary<string, List<Pracownik>>();
+            //UPDATE: zmiana z SortedDictionary na SortedList, bo SortedList jest bardziej zoptymalizowane pod kątem odczytywania
+            //SortedList zapewnia najszybszą iterację po Liście (zużywając przy tym mało pamięci) a tego tutaj używamy
+
+            //SortedDictionary jest lepsze jeżeli chodzi o wprowadzanie wartości do niego i usuwania ich.
+            //Gdybyśmy odwoływali się do elementu po kluczu, wtedy lepszym rozwiązeniem byłoby SortedDictionary, zużywa on więcej pamięci, ale jest wydajniejszy w takich przypadkach
+
+            //SortedDictionary (i SortedList) sortuje klucze w kolejności alfabetycznej dla stringów, rosnącej dla liczb; wtedy się przydaje
+            var pracownicy = new SortedList<string, List<Pracownik>>();
             pracownicy.Add("Sprzedaż", new List<Pracownik>
             {
                 new Pracownik { Imie = "Andrzej", Nazwisko = "Marciniak" },
