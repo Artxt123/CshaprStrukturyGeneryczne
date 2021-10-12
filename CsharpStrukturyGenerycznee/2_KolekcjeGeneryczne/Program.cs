@@ -16,30 +16,67 @@ namespace _2_KolekcjeGeneryczne
             //HashSet();
             //LinkedList();
             //LinkedList2();
+            //Dictionary0();
+            //Dictionary();
 
-            #region ZaawansowanySłownikKluczemNaziwsko
+            SortedDictionary();
+        }
 
+        private static void SortedDictionary()
+        {
+            //SortedDictionary sortuje klucze w kolejności alfabetycznej dla stringów, rosnącej dla liczb; wtedy się przydaje
+            var pracownicy = new SortedDictionary<string, List<Pracownik>>();
+            pracownicy.Add("Sprzedaż", new List<Pracownik>
+            {
+                new Pracownik { Imie = "Andrzej", Nazwisko = "Marciniak" },
+                new Pracownik {Imie = "Patryk", Nazwisko = "Tomczak"},
+                new Pracownik {Imie = "Dominik", Nazwisko = "Gackowski"}
+            });
+            pracownicy.Add("Informatyka", new List<Pracownik>
+            {
+                new Pracownik { Imie = "Paweł", Nazwisko = "Matuszewski" },
+                new Pracownik {Imie = "Sławomir", Nazwisko = "Kubiak"}
+            });
+            pracownicy.Add("Księgowość", new List<Pracownik>
+            {
+                new Pracownik { Imie = "Irena", Nazwisko = "Nawrocka" },
+                new Pracownik {Imie = "Tomasz", Nazwisko = "Kozica"},
+                new Pracownik {Imie = "Maciej", Nazwisko = "Szymczak"},
+                new Pracownik {Imie = "Michał", Nazwisko = "Szymandera"}
+            });
+
+
+            foreach (var dzial in pracownicy)
+            {
+                Console.WriteLine($"Ilość pracowników w dziale {dzial.Key} wynosi: {dzial.Value.Count}");
+            }
+        }
+
+        private static void Dictionary0()
+        {
             //robimy słownik, którego kluczem jest nazwisko, a zawartością jest lista pracowników o tym samym nazwisku;
             //dzięki temu możemy dodać dwóch pracowników o tym samym nazwisku, używając jako klucza ich identycznego nazwiska
-            //var pracownicy = new Dictionary<string, List<Pracownik>>();
-            //pracownicy.Add("Andrzejak", new List<Pracownik>() { new Pracownik { Imie = "Michał", Nazwisko = "Andrzejak" } });
-            //pracownicy.Add("Miła", new List<Pracownik>() { new Pracownik { Imie = "Katarzyna", Nazwisko = "Miła" } });
+            var pracownicy = new Dictionary<string, List<Pracownik>>();
+            pracownicy.Add("Andrzejak", new List<Pracownik>() { new Pracownik { Imie = "Michał", Nazwisko = "Andrzejak" } });
+            pracownicy.Add("Miła", new List<Pracownik>() { new Pracownik { Imie = "Katarzyna", Nazwisko = "Miła" } });
 
-            //pracownicy["Andrzejak"].Add(new Pracownik { Imie = "Natalia", Nazwisko = "Andrzejak" });
+            pracownicy["Andrzejak"].Add(new Pracownik { Imie = "Natalia", Nazwisko = "Andrzejak" });
 
-            //foreach (var lista in pracownicy)
-            //{
-            //    foreach (var pracownik in lista.Value)
-            //    {
-            //        Console.WriteLine($"{pracownik.Imie} {pracownik.Nazwisko}");
-            //    }
-            //}
-            #endregion
+            foreach (var lista in pracownicy)
+            {
+                foreach (var pracownik in lista.Value)
+                {
+                    Console.WriteLine($"{pracownik.Imie} {pracownik.Nazwisko}");
+                }
+            }
+        }
 
+        private static void Dictionary()
+        {
             //słownik, którego kluczem są działy, wartością listy pracowników z danego działu
             var pracownicy = new Dictionary<string, List<Pracownik>>();
-            pracownicy.Add("Księgowość", new List<Pracownik>()
-            { 
+            pracownicy.Add("Księgowość", new List<Pracownik>
+            {
               new Pracownik { Imie = "Michał", Nazwisko = "Andrzejak" },
               new Pracownik { Imie = "Izabela", Nazwisko = "Mądrecka" },
               new Pracownik { Imie = "Marcin", Nazwisko = "Poradzisz" }
@@ -47,8 +84,8 @@ namespace _2_KolekcjeGeneryczne
 
             pracownicy["Księgowość"].Add(new Pracownik { Imie = "Natalia", Nazwisko = "Andrzejak" });
 
-            pracownicy.Add("Informatyka", new List<Pracownik>()
-            { 
+            pracownicy.Add("Informatyka", new List<Pracownik>
+            {
               new Pracownik { Imie = "Marek", Nazwisko = "Rajkiewicz" },
               new Pracownik { Imie = "Wojciech", Nazwisko = "Wiertlewski" }
             });
