@@ -23,21 +23,40 @@ namespace _2_KolekcjeGeneryczne
             //SortedSet();
 
             //Posortowany słownik, aby były posortowane działy i posortowany Set, aby pracownicy byli posortowani po naziwsku
-            var pracownicy = new SortedDictionary<string, SortedSet<Pracownik>>();
+            var pracownicy = new DzialyKolekcja();
 
             //teraz robimy tak, aby nie można było dodać pracowników o tym samym nazwisku
-            pracownicy.Add("Sprzedaż", new SortedSet<Pracownik>(new PracownikComparer()));
-            pracownicy["Sprzedaż"].Add(new Pracownik { Imie = "Iwan", Nazwisko = "Nowak" });
-            pracownicy["Sprzedaż"].Add(new Pracownik { Imie = "Iwona", Nazwisko = "Jelcz" });
-            pracownicy["Sprzedaż"].Add(new Pracownik { Imie = "Krzysztof", Nazwisko = "Mercedes" });
-            pracownicy["Sprzedaż"].Add(new Pracownik { Imie = "Iwan", Nazwisko = "Nowak" });
+            pracownicy.Add("Sprzedaż", new Pracownik { Imie = "Iwan", Nazwisko = "Nowak" })
+                      .Add("Sprzedaż", new Pracownik { Imie = "Iwona", Nazwisko = "Jelcz" })
+                      .Add("Sprzedaż", new Pracownik { Imie = "Krzysztof", Nazwisko = "Mercedes" })
+                      .Add("Sprzedaż", new Pracownik { Imie = "Iwan", Nazwisko = "Nowak" }); //ten nie zostanie dodany
 
-            pracownicy.Add("Księgowość", new SortedSet<Pracownik>(new PracownikComparer()));
-            pracownicy["Księgowość"].Add(new Pracownik { Imie = "Janusz", Nazwisko = "Nowak" });
-            pracownicy["Księgowość"].Add(new Pracownik { Imie = "Wojciech", Nazwisko = "Kowalski" });
-            pracownicy["Księgowość"].Add(new Pracownik { Imie = "Anna", Nazwisko = "Roman" });
-            pracownicy["Księgowość"].Add(new Pracownik { Imie = "Izabela", Nazwisko = "Ochojska" });
-            pracownicy["Księgowość"].Add(new Pracownik { Imie = "Janusz", Nazwisko = "Nowak" });
+            pracownicy.Add("Księgowość", new Pracownik { Imie = "Janusz", Nazwisko = "Nowak" })
+                      .Add("Księgowość", new Pracownik { Imie = "Wojciech", Nazwisko = "Kowalski" })
+                      .Add("Księgowość", new Pracownik { Imie = "Anna", Nazwisko = "Roman" })
+                      .Add("Księgowość", new Pracownik { Imie = "Izabela", Nazwisko = "Ochojska" })
+                      .Add("Księgowość", new Pracownik { Imie = "Janusz", Nazwisko = "Nowak" }); //ten nie zostanie dodany
+            
+            #region KodPrzedUproszczeniem
+            ////Posortowany słownik, aby były posortowane działy i posortowany Set, aby pracownicy byli posortowani po naziwsku
+            //var pracownicy = new SortedDictionary<string, SortedSet<Pracownik>>();
+
+            ////teraz robimy tak, aby nie można było dodać pracowników o tym samym nazwisku
+            //pracownicy.Add("Sprzedaż", new SortedSet<Pracownik>(new PracownikComparer()));
+
+            //pracownicy["Sprzedaż"].Add(new Pracownik { Imie = "Iwan", Nazwisko = "Nowak" });
+            //pracownicy["Sprzedaż"].Add(new Pracownik { Imie = "Iwona", Nazwisko = "Jelcz" });
+            //pracownicy["Sprzedaż"].Add(new Pracownik { Imie = "Krzysztof", Nazwisko = "Mercedes" });
+            //pracownicy["Sprzedaż"].Add(new Pracownik { Imie = "Iwan", Nazwisko = "Nowak" });
+
+            //pracownicy.Add("Księgowość", new SortedSet<Pracownik>(new PracownikComparer()));
+
+            //pracownicy["Księgowość"].Add(new Pracownik { Imie = "Janusz", Nazwisko = "Nowak" });
+            //pracownicy["Księgowość"].Add(new Pracownik { Imie = "Wojciech", Nazwisko = "Kowalski" });
+            //pracownicy["Księgowość"].Add(new Pracownik { Imie = "Anna", Nazwisko = "Roman" });
+            //pracownicy["Księgowość"].Add(new Pracownik { Imie = "Izabela", Nazwisko = "Ochojska" });
+            //pracownicy["Księgowość"].Add(new Pracownik { Imie = "Janusz", Nazwisko = "Nowak" });
+            #endregion
 
             foreach (var dzial in pracownicy)
             {

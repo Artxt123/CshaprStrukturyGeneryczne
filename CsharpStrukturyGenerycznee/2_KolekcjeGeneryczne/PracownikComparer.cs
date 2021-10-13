@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace _2_KolekcjeGeneryczne
 {
-    class PracownikComparer : IEqualityComparer<Pracownik>, IComparer<Pracownik>
+    public class PracownikComparer : IEqualityComparer<Pracownik>, IComparer<Pracownik>
     {
         public int Compare(Pracownik x, Pracownik y)
         {
