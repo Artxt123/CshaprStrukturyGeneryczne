@@ -6,57 +6,38 @@ using System.Threading.Tasks;
 
 namespace _3_KlasyIInterfejsyGeneryczne
 {
-    public class KolejkaKolowa<T> : IKolejka<T>
+    public class KolejkaKolowa<T> : DuzaKolejka<T>
     {
-        private T[] bufor;
-        private int poczatekBufora;
-        private int koniecBufora;
+        private int pojemnosc;
 
-        public KolejkaKolowa() : this(pojemnosc: 5)
+        public KolejkaKolowa(int pojemnosc = 5)
         {
-
-        }
-        public KolejkaKolowa(int pojemnosc)
-        {
-            bufor = new T[pojemnosc + 1];
-            poczatekBufora = 0;
-            koniecBufora = 0;
+            this.pojemnosc = pojemnosc;
         }
 
-        public void Zapisz(T wartosc)
+        public override void Zapisz(T wartosc)
         {
-            bufor[koniecBufora] = wartosc;
-            koniecBufora = (koniecBufora + 1) % bufor.Length;
-
-            if (koniecBufora == poczatekBufora)
-                poczatekBufora = (poczatekBufora + 1) % bufor.Length;
-        }
-
-        public T Czytaj()
-        {
-            var wynik = bufor[poczatekBufora];
-            poczatekBufora = (poczatekBufora + 1) % bufor.Length;
-            return wynik;
-        }
-
-        public int Pojemnosc
-        {
-            get { return bufor.Length; }
-        }
-
-        public bool JestPusty
-        {
-            get
+            if (JestPelny)
             {
-                return koniecBufora == poczatekBufora;
+                kolejka.Dequeue();
             }
+            base.Zapisz(wartosc);
         }
-
-        public bool JestPelny
+        #region Zapisz_MetodaZKursu
+        //public override void Zapisz(T wartosc)
+        //{
+        //    base.Zapisz(wartosc);
+        //    if (kolejka.Count > pojemnosc)
+        //    {
+        //        kolejka.Dequeue();
+        //    }
+        //}
+        #endregion
+        public override bool JestPelny
         {
             get
             {
-                return (koniecBufora + 1) % bufor.Length == poczatekBufora;
+                return kolejka.Count == pojemnosc;
             }
         }
     }
