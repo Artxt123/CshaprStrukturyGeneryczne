@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 
 namespace _3_KlasyIInterfejsyGeneryczne
 {
@@ -29,6 +30,24 @@ namespace _3_KlasyIInterfejsyGeneryczne
         public virtual void Zapisz(T wartosc)
         {
             kolejka.Enqueue(wartosc);
+        }
+        public IEnumerator<T> GetEnumerator()
+        {
+            //Aby to działało można zrobić tak:
+            //return kolejka.GetEnumerator();
+
+            //Można też zrobić własnego foreach'a w którym będzie jakieś filtrowanie i potem będzie zwracał dane:
+            foreach (var item in kolejka)
+            {
+                //mijesce na jakieś filtoranie danych
+                //......
+
+                yield return item; //leniwie zwracamy item, yield pozwala na zwracanie wartości pojedynczo; inaczej nie zadziała
+            }
+        }
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }

@@ -13,6 +13,10 @@ namespace _3_KlasyIInterfejsyGeneryczne
             var kolejka = new KolejkaKolowa<double>();
 
             WprowadzanieDanych(kolejka);
+            foreach (var item in kolejka)
+            {
+                Console.WriteLine(item);
+            }
             PrzetwarzanieDanych(kolejka);
         }
 
