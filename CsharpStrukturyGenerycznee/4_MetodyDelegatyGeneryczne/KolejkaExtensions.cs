@@ -4,6 +4,7 @@ using System;
 
 namespace _4_MetodyDelegatyGeneryczne
 {
+    public delegate void Drukarka<T>(T dane);
     public static class KolejkaExtensions
     {
         /// <summary>
@@ -27,11 +28,11 @@ namespace _4_MetodyDelegatyGeneryczne
             }
         }
 
-        public static void Drukuj<T>(this IKolejka<T> kolejka)
+        public static void Drukuj<T>(this IKolejka<T> kolejka, Drukarka<T> wydruk)
         {
             foreach (var item in kolejka)
             {
-                Console.WriteLine(item);
+                wydruk(item);
             }
         }
     }

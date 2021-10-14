@@ -8,12 +8,18 @@ namespace _4_MetodyDelegatyGeneryczne
 {
     class Program
     {
+        static void KonsolaWypisz<T>(T dane)
+        {
+            Console.WriteLine(dane);
+        }
         static void Main(string[] args)
         {
             var kolejka = new KolejkaKolowa<double>();
 
             WprowadzanieDanych(kolejka);
-            kolejka.Drukuj();
+
+            //var konsolaWyjscie = new Drukarka<double>(KonsolaWypisz); //ta linijka niepotrzebna, można od razu przekazać metodę do kolejka.Drukuj(), bo jest ona zgodna z naszym delegatem, którego metoda Drukuj() oczekuje
+            kolejka.Drukuj(KonsolaWypisz); //nie trzeba wpisywać KonsolaWypisz<double>, bo kolejka jest typu double i kompilator sam sobie to dopasuje
 
             var elementyJakoInt = kolejka.ElementJako<double, int>();
             foreach (var item in elementyJakoInt)
