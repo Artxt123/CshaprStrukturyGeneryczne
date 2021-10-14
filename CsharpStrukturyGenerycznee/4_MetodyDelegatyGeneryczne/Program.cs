@@ -8,18 +8,27 @@ namespace _4_MetodyDelegatyGeneryczne
 {
     class Program
     {
-        static void KonsolaWypisz<T>(T dane)
-        {
-            Console.WriteLine(dane);
-        }
         static void Main(string[] args)
         {
             var kolejka = new KolejkaKolowa<double>();
 
+            //Action to delegat, który zawsze zwraca void, może przyjmować od 0 do 16 argumentów
+            //Przypisujemy do drukuj metodę anonimową, która przyjumuje double dane i wypisuje je na ekran
+            //Action<double> drukuj = delegate (double dane){ Console.WriteLine(dane); };
+
+            //To samo co wyżej tylko przy użyciu wyrażenia lambda:
+            //Action<double> drukuj = d => Console.WriteLine(d); //d jest tym double i wypisujemy to na ekranie
+
+            //Inne rzeczy z wykorzystanie Action:
+            Action<double> drukuj = x => Console.WriteLine(x);
+            drukuj(7.89);
+            Action<int, int, int> dodajWypisz = (a, b, c) => Console.WriteLine(a + b + c);
+            dodajWypisz(1, 2, 5);
+
             WprowadzanieDanych(kolejka);
 
-            //var konsolaWyjscie = new Drukarka<double>(KonsolaWypisz); //ta linijka niepotrzebna, można od razu przekazać metodę do kolejka.Drukuj(), bo jest ona zgodna z naszym delegatem, którego metoda Drukuj() oczekuje
-            kolejka.Drukuj(KonsolaWypisz); //nie trzeba wpisywać KonsolaWypisz<double>, bo kolejka jest typu double i kompilator sam sobie to dopasuje
+            //metoda Drukuj() oczekuje delegata Action, dlatego możemy od razu tutaj wpisać wyrażenie lambda
+            kolejka.Drukuj(d => Console.WriteLine(d));
 
             var elementyJakoInt = kolejka.ElementJako<double, int>();
             foreach (var item in elementyJakoInt)
