@@ -27,8 +27,8 @@ namespace _4_MetodyDelegatyGeneryczne
             //dodajWypisz(1, 2, 5);
             #endregion
 
-            Action<double> drukuj = d => Console.WriteLine(d);
-
+            Action<bool> drukuj = d => Console.WriteLine(d);
+            #region Func
             //Func zawsze zwraca coś zwraca, ten typ określamy na samym końcu przy podawaniu parametrów
 
             //Tutaj przyjumje double i zwraca double:
@@ -36,8 +36,16 @@ namespace _4_MetodyDelegatyGeneryczne
             //Tutaj przyjmuje dwa double i zwraca double:
             Func<double, double, double> dodaj = (x, y) => x + y;
 
-            drukuj(potegowanie(5.5));
-            drukuj(dodaj(3.4, 1.11));
+            //drukuj(potegowanie(5.5));
+            //drukuj(dodaj(3.4, 1.11));
+            #endregion
+
+
+            //Predicate zawsze przyjmuje jeden parametr i zawsze zwraca bool (wartość logiczną)
+            Predicate<double> jestMniejszeOdSto = d => d < 100;
+
+            //wywołanie wszystkich powyższych delegatów jednocześnie
+            drukuj(jestMniejszeOdSto(potegowanie(dodaj(5, 7))));
 
             WprowadzanieDanych(kolejka);
 
