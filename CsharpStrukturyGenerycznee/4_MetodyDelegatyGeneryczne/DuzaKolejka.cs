@@ -33,27 +33,6 @@ namespace _4_MetodyDelegatyGeneryczne
             kolejka.Enqueue(wartosc);
         }
 
-        
-        /// <summary>
-        /// metoda potrzebna, aby zwracać elementy w kolejce jako już inny typ danych:
-        ///np. mamy w kolejce double, a chcemy, aby komuś wypisywało od razu inty
-        /// </summary>
-        /// <typeparam name="Twyjscie"></typeparam>
-        /// <returns></returns>
-        public IEnumerable<Twyjscie> ElementJako<Twyjscie>()
-        {
-            //tworzymy konwerter dla naszego typu danych
-            var konwerter = TypeDescriptor.GetConverter(typeof(T));
-            
-            //przechodzimy przez elementy w kolejce i konwertujemy je na typ wyjściowy
-            foreach (var item in kolejka)
-            {
-                var wynik = konwerter.ConvertTo(item, typeof(Twyjscie));
-                //zwracamy leniwie typ wyjściowy, ktory przed chwilą otrzymaliśmy
-                yield return (Twyjscie)wynik;
-            }
-        }
-
         public IEnumerator<T> GetEnumerator()
         {
             //Aby to działało można zrobić tak:

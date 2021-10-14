@@ -13,13 +13,13 @@ namespace _4_MetodyDelegatyGeneryczne
             var kolejka = new KolejkaKolowa<double>();
 
             WprowadzanieDanych(kolejka);
+            kolejka.Drukuj();
 
-            var elementyJakoInt = kolejka.ElementJako<int>();
+            var elementyJakoInt = kolejka.ElementJako<double, int>();
             foreach (var item in elementyJakoInt)
             {
                 Console.WriteLine(item);
             }
-
             PrzetwarzanieDanych(kolejka);
         }
 
