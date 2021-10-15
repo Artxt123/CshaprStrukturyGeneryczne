@@ -11,23 +11,25 @@ namespace _4_MetodyDelegatyGeneryczne
         static void Main(string[] args)
         {
 
-            var kolejka = new KolejkaKolowa<double>();
+            var kolejka = new KolejkaKolowa<double>(pojemnosc: 3);
+            kolejka.elementUsuniety += Kolejka_elementUsuniety;
+
             WprowadzanieDanych(kolejka);
 
-            //nasz konwerter zamienia double na datę; tworzymy nową datę, której punktem początkowym jest 1.1.2021 i dodajemy do niej liczbę dni
-            //Converter<double, DateTime> konwerter = d => new DateTime(2021, 1, 1).AddDays(d);
-            //var jakoData = kolejka.Mapuj(konwerter);
+            //var jakoData = kolejka.Mapuj(d => new DateTime(2021, 1, 1).AddDays(d));
 
-            //wyrażenie lambda można od razu wsatwić w metodę Mapuj(), bez tworzenia delegata Converter, kompilator się domyśli sam, że o to chodzi
-            var jakoData = kolejka.Mapuj(d => new DateTime(2021, 1, 1).AddDays(d));
-
-            foreach (var item in jakoData)
-            {
-                Console.WriteLine(item);
-            }
+            //foreach (var item in jakoData)
+            //{
+            //    Console.WriteLine(item);
+            //}
 
             kolejka.Drukuj(d => Console.WriteLine(d));
             PrzetwarzanieDanych(kolejka);
+        }
+
+        private static void Kolejka_elementUsuniety(object sender, ElementUsunietyEventArgs<double> e)
+        {
+            Console.WriteLine($"Kolejka jest pełna. Element usunięty to: {e.ElementUsuniety}, nowy element to: {e.ElementNowy}.");
         }
 
         private static void PrzetwarzanieDanych(IKolejka<double> kolejka)

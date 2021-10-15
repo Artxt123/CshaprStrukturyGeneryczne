@@ -31,8 +31,7 @@ namespace _4_MetodyDelegatyGeneryczne
                 //    //zwracamy leniwie typ wyjściowy, ktory przed chwilą otrzymaliśmy
                 //    yield return wynik;
                 //}
-
-            
+ 
         }
 
         public static void Drukuj<T>(this IKolejka<T> kolejka, Action<T> wydruk)
