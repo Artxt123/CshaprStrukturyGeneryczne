@@ -10,53 +10,23 @@ namespace _4_MetodyDelegatyGeneryczne
     {
         static void Main(string[] args)
         {
+
             var kolejka = new KolejkaKolowa<double>();
-            #region Action
-
-            //Action to delegat, który zawsze zwraca void, może przyjmować od 0 do 16 argumentów
-            //Przypisujemy do drukuj metodę anonimową, która przyjumuje double dane i wypisuje je na ekran
-            //Action<double> drukuj = delegate (double dane){ Console.WriteLine(dane); };
-
-            //To samo co wyżej tylko przy użyciu wyrażenia lambda:
-            //Action<double> drukuj = d => Console.WriteLine(d); //d jest tym double i wypisujemy to na ekranie
-
-            //Inne rzeczy z wykorzystanie Action:
-            //Action<double> drukuj = x => Console.WriteLine(x);
-            //drukuj(7.89);
-            //Action<int, int, int> dodajWypisz = (a, b, c) => Console.WriteLine(a + b + c);
-            //dodajWypisz(1, 2, 5);
-            #endregion
-
-            Action<bool> drukuj = d => Console.WriteLine(d);
-            #region Func
-            //Func zawsze zwraca coś zwraca, ten typ określamy na samym końcu przy podawaniu parametrów
-
-            //Tutaj przyjumje double i zwraca double:
-            Func<double, double> potegowanie = d => d * d;
-            //Tutaj przyjmuje dwa double i zwraca double:
-            Func<double, double, double> dodaj = (x, y) => x + y;
-
-            //drukuj(potegowanie(5.5));
-            //drukuj(dodaj(3.4, 1.11));
-            #endregion
-
-
-            //Predicate zawsze przyjmuje jeden parametr i zawsze zwraca bool (wartość logiczną)
-            Predicate<double> jestMniejszeOdSto = d => d < 100;
-
-            //wywołanie wszystkich powyższych delegatów jednocześnie
-            drukuj(jestMniejszeOdSto(potegowanie(dodaj(5, 7))));
-
             WprowadzanieDanych(kolejka);
 
-            //metoda Drukuj() oczekuje delegata Action, dlatego możemy od razu tutaj wpisać wyrażenie lambda
-            kolejka.Drukuj(d => Console.WriteLine(d));
+            //nasz konwerter zamienia double na datę; tworzymy nową datę, której punktem początkowym jest 1.1.2021 i dodajemy do niej liczbę dni
+            //Converter<double, DateTime> konwerter = d => new DateTime(2021, 1, 1).AddDays(d);
+            //var jakoData = kolejka.Mapuj(konwerter);
 
-            var elementyJakoInt = kolejka.ElementJako<double, int>();
-            foreach (var item in elementyJakoInt)
+            //wyrażenie lambda można od razu wsatwić w metodę Mapuj(), bez tworzenia delegata Converter, kompilator się domyśli sam, że o to chodzi
+            var jakoData = kolejka.Mapuj(d => new DateTime(2021, 1, 1).AddDays(d));
+
+            foreach (var item in jakoData)
             {
                 Console.WriteLine(item);
             }
+
+            kolejka.Drukuj(d => Console.WriteLine(d));
             PrzetwarzanieDanych(kolejka);
         }
 
